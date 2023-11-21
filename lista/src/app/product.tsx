@@ -13,7 +13,8 @@ const Product = (props: Props) => {
   return (
     <div>
       <li>
-        {props.name}
+        <p>{props.descripcion}</p>
+        <p>${props.precio}</p>
       </li>
     </div>
   );

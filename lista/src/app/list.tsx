@@ -28,12 +28,18 @@ const InformationList = () => {
     fetchInformation();
   }, []);
 
+  const aumento = (item: Information) => {
+    return
+    <Product name={item.productName} descripcion={item.description} precio={item.price}></Product>
+  };
   return (
     <div>
       <h2>Information List</h2>
       <ul>
         {information.map((item) => (
-          <Product name={item.productName} descripcion={item.description} precio={item.price}></Product>
+            <div key={item.id} onClick={()=>aumento(item)}>
+                {item.productName}
+            </div>
         ))}
       </ul>
     </div>
