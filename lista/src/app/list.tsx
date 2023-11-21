@@ -33,7 +33,7 @@ const InformationList = () => {
       <h2>Information List</h2>
       <ul>
         {information.map((item) => (
-          <Product></Product>
+          <Product name={item.productName} descripcion={item.description} precio={item.price}></Product>
         ))}
       </ul>
     </div>
