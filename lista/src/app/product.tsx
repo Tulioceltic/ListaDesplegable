@@ -12,7 +12,7 @@ const Product = (props: Props) => {
 
   return (
     <div>
-      <li>
+      <li className='bg-purple-900 border-white border-2 p-2 m-2'>
         <p>{props.descripcion}</p>
         <p>${props.precio}</p>
       </li>
