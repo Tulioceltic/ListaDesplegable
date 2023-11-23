@@ -1,8 +1,8 @@
 'use client'
-function Information (props: object) {
+function Information (props: any) {
     return (
         <div>
-            <h1>prueba{props.name}</h1>
+            <h1>prueba {props.name}</h1>
         </div>
     )
 };
