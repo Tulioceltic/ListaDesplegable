@@ -1,13 +1,15 @@
 'use client'
 import { SetStateAction, useEffect, useState } from 'react';
-import fetchData from "./fetchData";
 import Information from "./information";
 
 
 function Card() {
   const [pokemon, setPokemon] = useState<string>('');
   const [informacion, setInformacion] = useState<{[key: string]: any}>({});
+  const [ilustracion, setIlustracion] = useState<{[key: string]: any}>({});
+  const [tipos, setTipos] = useState<{[key: string]: any}>({});
   const [mostrar, setMostrar] = useState(false);
+  const [nombre,setNombre]=useState<string>('')
   
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setPokemon(event.target.value);
@@ -23,15 +25,19 @@ function Card() {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
-    
         const data = await response.json();
         setInformacion(data)
+        setIlustracion(data.sprites)
+        const a = data.types.map((obj)=>obj.type.name)
+        setTipos(a)
+        setNombre(data.name.toUpperCase())
       } catch (error) {
+        alert('Error al obtener datos:', error)
         console.error('Error al obtener datos:', error);
       }
     }
     traer()
-    setMostrar(!mostrar)
+    setMostrar(true)
     };
   
   return (
@@ -43,8 +49,7 @@ function Card() {
       </form>
       {mostrar &&
         <div className="card">
-          {console.log(informacion)}
-          <Information name={informacion.name}></Information>
+          <Information name={nombre} imagen1={ilustracion.front_default} imagen2={ilustracion.back_default} id={informacion.id} tipos={tipos}></Information>
         </div>
       }
     </div>
